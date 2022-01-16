@@ -1,3 +1,5 @@
+{-# Language CApiFFI #-}
+
 module System.Terminal.Platform
     ( withTerminal
     , LocalTerminal ()
@@ -302,7 +304,7 @@ foreign import ccall unsafe "tcgetattr"
 foreign import ccall unsafe "tcsetattr"
   unsafeSetTermios :: CInt -> CInt -> Ptr Termios -> IO CInt
 
-foreign import capi unsafe "ioctl"
+foreign import capi unsafe "sys/ioctl.h ioctl"
   unsafeIOCtl :: CInt -> CULong -> Ptr a -> IO CInt
 
 foreign import ccall unsafe
